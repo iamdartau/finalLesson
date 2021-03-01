@@ -1,4 +1,4 @@
 package com.company;
 
-public class ClientHandler {
+public class ClientHandler extends Thread {
 }
