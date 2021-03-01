@@ -1,12 +1,8 @@
 package com.company;
 
-import com.mysql.cj.protocol.x.XServerCapabilities;
-import com.mysql.cj.util.EscapeTokenizer;
-
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.rmi.UnmarshalException;
 import java.util.Scanner;
 
 public class Client {
