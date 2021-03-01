@@ -7,6 +7,13 @@ public class Students {
     String surname;
     int age;
 
+    public Students(String newName, String nesSurname, int i) {
+        this.name = newName;
+        this.surname= nesSurname;
+        this.age = i;
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -44,5 +51,15 @@ public class Students {
         this.name = name;
         this.surname = surname;
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Students{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
