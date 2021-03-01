@@ -17,18 +17,20 @@ public class ClientHandler extends Thread {
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            PackageData data = null;
+            PackageData data;
             PackageData response = null;
+            DAO dao = new DaoImpl();
             while ((data = (PackageData) inputStream.readObject()) != null) {
                 if (data.getOperationType().equalsIgnoreCase("list")) {
-                    DAO dao = new DaoImpl();
                     response = new PackageData("list",dao.getStudensts(),null);
+                }else if (data.getOperationType().equalsIgnoreCase("add")){
+                    dao.addStident(data.getStudent());
                 }
                 outputStream.writeObject(response);
                 outputStream.reset();
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }
