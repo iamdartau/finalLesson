@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.front.MainFrame;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -7,6 +9,8 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
+        MainFrame frame = new MainFrame();
+        frame.setVisible(true);
 
         Scanner scanner = new Scanner(System.in);
         try {
