@@ -24,7 +24,7 @@ public class MainMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 parent.getMainMenuPage().setVisible(false);
-                parent.getFirstPage().setVisible(true);
+                parent.getAddStudentPage().setVisible(true);
             }
         });
         secondPageButton = new JButton("list students");

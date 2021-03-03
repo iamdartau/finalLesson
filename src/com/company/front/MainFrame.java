@@ -1,20 +1,18 @@
 package com.company.front;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
     private MainMenu mainMenuPage;
-    private FirstPage firstPage;
+    private AddStudentPage addStudentPage;
     private SecondPage secondPage;
 
     public MainMenu getMainMenuPage() {
         return mainMenuPage;
     }
 
-    public FirstPage getFirstPage() {
-        return firstPage;
+    public AddStudentPage getAddStudentPage() {
+        return addStudentPage;
     }
 
     public SecondPage getSecondPage() {
@@ -32,9 +30,9 @@ public class MainFrame extends JFrame {
         mainMenuPage.setVisible(true);
         add(mainMenuPage);
 
-        firstPage = new FirstPage(this);
-        firstPage.setVisible(false);
-        add(firstPage);
+        addStudentPage = new AddStudentPage(this);
+        addStudentPage.setVisible(false);
+        add(addStudentPage);
 
         secondPage = new SecondPage(this);
         secondPage.setVisible(false);

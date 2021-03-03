@@ -1,5 +1,7 @@
-package com.company;
+package com.company.back.network;
 
+import com.company.back.models.PackageData;
+import com.company.back.models.Students;
 import com.company.front.MainFrame;
 
 import java.io.ObjectInputStream;
@@ -19,9 +21,9 @@ public class Client {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             PackageData data;
             while (true) {
-                System.out.println("1 list");
-                System.out.println("2 add");
-                System.out.println("0 end");
+                System.out.println("list");
+                System.out.println("add");
+                System.out.println("end");
                 String choice = scanner.next();
                 if (choice.equalsIgnoreCase("list")) {
                     data = new PackageData(choice, null, null);

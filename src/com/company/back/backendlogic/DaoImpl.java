@@ -1,4 +1,7 @@
-package com.company;
+package com.company.back.backendlogic;
+
+import com.company.back.models.Students;
+import com.company.back.database.DbManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

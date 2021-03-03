@@ -1,4 +1,8 @@
-package com.company;
+package com.company.back.network;
+
+import com.company.back.backendlogic.DAO;
+import com.company.back.backendlogic.DaoImpl;
+import com.company.back.models.PackageData;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
