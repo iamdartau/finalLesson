@@ -1,5 +1,9 @@
 package com.company.front;
 
+import com.company.back.models.PackageData;
+import com.company.back.models.Students;
+import com.company.back.network.Client;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,14 +15,15 @@ public class MainMenu extends JPanel {
     private JButton secondPageButton;
     private JButton exitButton;
 
+
     public MainMenu(MainFrame parent) {
         this.parent = parent;
-        setSize(500,500);
+        setSize(500, 500);
         setLayout(null);
 
         firstPageButton = new JButton("add student");
-        firstPageButton.setSize(300,30);
-        firstPageButton.setLocation(100,100);
+        firstPageButton.setSize(300, 30);
+        firstPageButton.setLocation(100, 100);
         add(firstPageButton);
         firstPageButton.addActionListener(new ActionListener() {
             @Override
@@ -28,21 +33,22 @@ public class MainMenu extends JPanel {
             }
         });
         secondPageButton = new JButton("list students");
-        secondPageButton.setSize(300,30);
-        secondPageButton.setLocation(100,150);
+        secondPageButton.setSize(300, 30);
+        secondPageButton.setLocation(100, 150);
         add(secondPageButton);
         secondPageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-//                parent.getSecondPage().generateTable(parent.getPlayers());
+                PackageData data = Client.getData(Client.bucket);
+                parent.getListPage().generateTable(Client.getArrayOf(data.getStudents()));
                 parent.getMainMenuPage().setVisible(false);
-                parent.getSecondPage().setVisible(true);
+                parent.getListPage().setVisible(true);
             }
         });
 
         exitButton = new JButton("Exit");
-        exitButton.setSize(300,30);
-        exitButton.setLocation(100,200);
+        exitButton.setSize(300, 30);
+        exitButton.setLocation(100, 200);
         add(exitButton);
         exitButton.addActionListener(new ActionListener() {
             @Override
@@ -51,4 +57,5 @@ public class MainMenu extends JPanel {
             }
         });
     }
+
 }

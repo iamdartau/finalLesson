@@ -7,6 +7,7 @@ import com.company.back.models.PackageData;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class ClientHandler extends Thread {
     private Socket socket;
@@ -18,22 +19,38 @@ public class ClientHandler extends Thread {
     }
 
     public void run() {
+        System.out.println("run started");
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-            PackageData data;
-            PackageData response = null;
+            System.out.println("steam is done");
+            PackageData data = null;
             DAO dao = new DaoImpl();
+            System.out.println("dao created");
             while ((data = (PackageData) inputStream.readObject()) != null) {
-                if (data.getOperationType().equalsIgnoreCase("list")) {
-                    response = new PackageData("list",dao.getStudensts(),null);
-                }else if (data.getOperationType().equalsIgnoreCase("add")){
+                System.out.println("we get in while");
+                if (data.getOperationType().equalsIgnoreCase("add")){
+                    System.out.println("go to db");
                     dao.addStident(data.getStudent());
+                    System.out.println("db done");
+                }else if (data.getOperationType().equalsIgnoreCase("list")){
+                    System.out.println("get list");
+                    outputStream.writeObject(new PackageData("done",dao.getStudensts(), null));
+                    outputStream.flush();
+                    outputStream.reset();
+                    System.out.println("list sended");
                 }
-                outputStream.writeObject(response);
-                outputStream.reset();
+                System.out.println("done");
+
             }
+            System.out.println("not in while");
         } catch (Exception e) {
+            try {
+                System.out.println(socket.getKeepAlive());
+            } catch (SocketException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("there is some problem catched");
             e.printStackTrace();
         }
     }

@@ -3,9 +3,10 @@ package com.company.front;
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
+
     private MainMenu mainMenuPage;
     private AddStudentPage addStudentPage;
-    private SecondPage secondPage;
+    private ListPage listPage;
 
     public MainMenu getMainMenuPage() {
         return mainMenuPage;
@@ -15,17 +16,16 @@ public class MainFrame extends JFrame {
         return addStudentPage;
     }
 
-    public SecondPage getSecondPage() {
-        return secondPage;
+    public ListPage getListPage() {
+        return listPage;
     }
 
     public MainFrame() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("BITLAB Application");
-        setSize(500,500);
+        setSize(500, 500);
         setLayout(null);
-
         mainMenuPage = new MainMenu(this);
         mainMenuPage.setVisible(true);
         add(mainMenuPage);
@@ -34,10 +34,9 @@ public class MainFrame extends JFrame {
         addStudentPage.setVisible(false);
         add(addStudentPage);
 
-        secondPage = new SecondPage(this);
-        secondPage.setVisible(false);
-        add(secondPage);
-
-
+        listPage = new ListPage(this);
+        listPage.setVisible(false);
+        add(listPage);
     }
+
 }

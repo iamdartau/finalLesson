@@ -1,21 +1,41 @@
 package com.company.front;
 
+import com.company.back.models.PackageData;
+import com.company.back.models.Students;
+import com.company.back.network.Client;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static com.company.back.network.Client.setData;
+
 public class AddStudentPage extends JPanel {
-
     private MainFrame parent;
-
     private JLabel label;
     private JLabel name, surname, age;
     private JTextField nameField, surnameField, ageTextField;
-    private JButton add, back;
+    private JButton addStudent, back;
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JTextField getSurnameField() {
+        return surnameField;
+    }
+
+    public JTextField getAgeTextField() {
+        return ageTextField;
+    }
+
+    public JButton getAddStudent() {
+        return addStudent;
+    }
 
     public AddStudentPage(MainFrame parent) {
         this.parent = parent;
-        setSize(500,500);
+        setSize(500, 500);
         setLayout(null);
 
         name = new JLabel("Name:");
@@ -38,24 +58,41 @@ public class AddStudentPage extends JPanel {
         surnameField.setLocation(250, 160);
         add(surnameField);
 
-        age = new JLabel("Group: ");
+        age = new JLabel("age: ");
         age.setSize(100, 30);
-        age.setLocation(100, 270);
+        age.setLocation(100, 220);
         add(age);
 
-        ageTextField = new JTextField("insert group");
+        ageTextField = new JTextField("0");
         ageTextField.setSize(150, 30);
-        ageTextField.setLocation(250, 270);
+        ageTextField.setLocation(250, 220);
         add(ageTextField);
 
-        add = new JButton("ADD");
-        add.setSize(100, 30);
-        add.setLocation(100, 370);
-        add(add);
+        addStudent = new JButton("ADD");
+        addStudent.setSize(100, 30);
+        addStudent.setLocation(100, 370);
+        add(addStudent);
 
+        addStudent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nameField.getText();
+                String surname = surnameField.getText();
+                String age = ageTextField.getText();
+                if (!name.equals("") &&
+                        !surname.equals("") &&
+                        !age.equals("")) {
+                    Students student = new Students(name, surname, Integer.parseInt(age));
+                    setData(Client.bucket ,new PackageData("add", null,student));
+                    nameField.setText("");
+                    surnameField.setText("");
+                    ageTextField.setText("");
+                }
+            }
+        });
         back = new JButton("Back");
-        back.setSize(300,30);
-        back.setLocation(100,150);
+        back.setSize(100, 30);
+        back.setLocation(300, 370);
         add(back);
         back.addActionListener(new ActionListener() {
             @Override

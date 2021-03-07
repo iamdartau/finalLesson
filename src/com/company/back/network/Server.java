@@ -6,8 +6,9 @@ import java.net.Socket;
 public class Server {
 
     public static void main(String[] args) {
+
         try {
-            ServerSocket server = new ServerSocket(9889);
+            ServerSocket server = new ServerSocket(2222);
             int id = 0;
             while (true) {
                 Socket socket = server.accept();
