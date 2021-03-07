@@ -1,6 +1,8 @@
-package com.company;
+package com.company.back.models;
 
-public class Students {
+import java.io.Serializable;
+
+public class Students implements Serializable {
 
     Long id;
     String name;

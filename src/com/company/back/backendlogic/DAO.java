@@ -1,4 +1,6 @@
-package com.company;
+package com.company.back.backendlogic;
+
+import com.company.back.models.Students;
 
 import java.util.ArrayList;
 
